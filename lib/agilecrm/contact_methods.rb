@@ -27,7 +27,7 @@ module AgileCRM
     end
 
     def update_contact(contact_id, base_params = {}, properties = {})
-      reject_old_params_keys = [:owner, :created_time, :updated_time, :viewed_time, :viewed]
+      reject_old_params_keys = [:owner, :updated_time]
       old_params = find_contact!(contact_id).reject{ |k, v| reject_old_params_keys.include?(k) }
       new_params = normalize_contact_save_params(base_params, properties)
       params = Utils.deep_merge old_params, new_params do |key, old_value, new_value|
