@@ -77,7 +77,7 @@ module AgileCRM
     private
 
       def normalize_contact_save_params(base_params = {}, properties = {})
-        params = base_params.deep_dup
+        params = Utils.deep_dup base_params
         params[:properties] ||= []
         params[:properties] += properties.map{ |k, v| {name: k.to_s, value: v.to_s} }
         params

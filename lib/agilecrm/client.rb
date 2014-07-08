@@ -1,6 +1,5 @@
 require 'faraday'
 require 'faraday_middleware'
-require 'active_support/core_ext/object'
 require 'agilecrm/error'
 require 'agilecrm/utils'
 require 'agilecrm/response/parse_json'
