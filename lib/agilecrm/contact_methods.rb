@@ -38,6 +38,9 @@ module AgileCRM
           new_value
         end
       end
+      if params[:tags].is_a?(Array) && params[:tagsWithTime].is_a?(Array)
+        params[:tagsWithTime].keep_if{ |t| t[:entity_type] == 'tag' && params[:tags].include?(t[:tag]) }
+      end
       save_contact params
     end
 
