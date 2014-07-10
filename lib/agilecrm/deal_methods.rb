@@ -14,14 +14,20 @@ module AgileCRM
     end
 
     def create_deal(params = {})
-      rest_api_post('opportunity', params).body
+      params.delete :id
+      save_deal params
     end
 
     def update_deal(deal_id, params = {})
       reject_old_params_keys = [:contacts, :owner, :updated_time]
       old_params = find_deal!(deal_id).reject{ |k, v| reject_old_params_keys.include?(k) }
       params = Utils.deep_merge old_params, params
-      rest_api_put('opportunity', params).body
+      save_deal params
+    end
+
+    def save_deal(params = {})
+      method = params[:id].present? ? :put : :post
+      rest_api_request(method, 'opportunity', params).body
     end
 
     def delete_deal(deal_id)

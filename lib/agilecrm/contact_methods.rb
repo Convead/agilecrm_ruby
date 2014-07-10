@@ -22,8 +22,9 @@ module AgileCRM
     end
 
     def create_contact(base_params = {}, properties = {})
+      base_params.delete :id
       params = normalize_contact_save_params(base_params, properties)
-      rest_api_post('contacts', params).body
+      save_contact params
     end
 
     def update_contact(contact_id, base_params = {}, properties = {})
@@ -37,7 +38,12 @@ module AgileCRM
           new_value
         end
       end
-      rest_api_put('contacts', params).body
+      save_contact params
+    end
+
+    def save_contact(params = {})
+      method = params[:id].present? ? :put : :post
+      rest_api_request(method, 'contacts', params).body
     end
 
     def delete_contact(contact_id)
