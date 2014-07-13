@@ -1,17 +1,16 @@
 require 'faraday'
 require 'faraday_middleware'
+require 'agilecrm/client_methods/contact_methods'
+require 'agilecrm/client_methods/deal_methods'
 require 'agilecrm/error'
-require 'agilecrm/utils'
 require 'agilecrm/response/parse_json'
 require 'agilecrm/response/raise_error'
-require 'agilecrm/contact_methods'
-require 'agilecrm/deal_methods'
+require 'agilecrm/utils'
 
 module AgileCRM
   class Client
-    
-    include ContactMethods
-    include DealMethods
+    include ClientMethods::ContactMethods
+    include ClientMethods::DealMethods
 
     REST_API_URL_PREFIX = 'agilecrm.com/dev/api'
     PHP_API_URL_PREFIX  = 'agilecrm.com/core/php/api'

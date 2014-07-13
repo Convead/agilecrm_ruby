@@ -1,6 +1,3 @@
-require 'faraday'
-require 'agilecrm/error'
-
 module AgileCRM
   module Response
     class RaiseError < Faraday::Response::Middleware

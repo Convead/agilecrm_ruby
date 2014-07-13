@@ -1,5 +1,3 @@
-require 'faraday'
-
 module AgileCRM
   module Response
     class ParseJson < Faraday::Response::Middleware
