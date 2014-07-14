@@ -32,10 +32,8 @@ module AgileCRM
 
       def set_property(name, value, params = {})
         params.merge! name: name.to_s, value: value
-        unless property_objects.select{ |prop| prop.eql? params }.length == 1
-          property_objects.reject!{ |prop| prop.name == params[:name] }
-          property_objects << Property.from_hash(params)
-        end
+        property_objects.reject!{ |prop| prop.name == params[:name] }
+        property_objects << Property.from_hash(params)
         params
       end
 
